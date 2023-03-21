@@ -1,9 +1,7 @@
 from django.db import models
-from django.contrib.auth.models import AbstractBaseUser, PermissionsMixin
-from django.contrib.auth.models import BaseUserManager
 
 
-class ProductManager(BaseUserManager):
+class ProductManager(models.Manager):
     """Manager for Product"""
 
     def create_product(self, name: str, sku: int, price: int, shopId: int, description: str, 
@@ -22,7 +20,7 @@ class ProductManager(BaseUserManager):
         
 
 
-class Product(AbstractBaseUser, PermissionsMixin):
+class Product(models.Model):
     '''Database model for products in the system'''
 
     shopId = models.BigIntegerField(null=False, unique=True) #need to change to ForeignKey remove unique
@@ -45,6 +43,8 @@ class Product(AbstractBaseUser, PermissionsMixin):
     '''
 
     object = ProductManager()
+    USER_NAME_FIELD = 'shopId'
+    REQUIRED_FIELD = ['name']
 
 
     def __str__(self) -> str:
