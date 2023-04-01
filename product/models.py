@@ -43,7 +43,6 @@ class Product(models.Model):
     '''
 
     object = ProductManager()
-    USER_NAME_FIELD = 'shopId'
     REQUIRED_FIELD = ['name']
 
 
