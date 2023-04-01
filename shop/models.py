@@ -39,7 +39,6 @@ class Shop(models.Model):
     is_anonymous = models.BooleanField(default=False)
     is_authenticated = models.BooleanField(default=True)
 
-    USERNAME_FIELD = 'profileId'
     REQUIRED_FIELDS = ['name']
     object = ShopManager()
 
