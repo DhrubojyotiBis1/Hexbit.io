@@ -71,7 +71,7 @@ def createShop(request):
     if not UserProfile.objects.filter(pk=data[PROFILE_ID]).exists():
         return Response({'message': FAIL}, 404)
 
-    shop = Shop.object.create_shop(userProfileID=data[PROFILE_ID], name=data[NAME])
+    shop = Shop.object.create_shop(userProfile_id=data[PROFILE_ID], name=data[NAME])
 
     return Response({'message': SUCESS, 'shops': shop.name}, 200)
 

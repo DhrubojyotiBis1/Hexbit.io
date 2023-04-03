@@ -77,7 +77,7 @@ def postProducts(request):
             return Response({'message': FAIL}, 404)
 
     for product in products:
-        Product.object.create_product(name=product[NAME], shopId=product[SHOP_ID], sku=product[SKU], price=product[PRICE], description=product[DESCRIPTION])
+        Product.object.create_product(name=product[NAME], shop_id=product[SHOP_ID], sku=product[SKU], price=product[PRICE], description=product[DESCRIPTION])
     
     return Response({'message': SUCESS}, 200)
 

@@ -7,11 +7,11 @@ from userprofile.models import UserProfile
 class ShopManager(models.Manager):
     '''Manager for Shop Model'''
 
-    def create_shop(self, userProfileID: int, name: str, city='', state='', accountNumber='', ifscCode='', incorporatioName='', incorporationType='',
+    def create_shop(self, userProfile_id: int, name: str, city='', state='', accountNumber='', ifscCode='', incorporatioName='', incorporationType='',
                     gstin='', pan='', phone='', email=''):
         
         
-        shop = self.model(userProfile_id=userProfileID, name=name, city=city, state=state, accountNumber=accountNumber, ifscCode=ifscCode,incorporatioName=incorporatioName,
+        shop = self.model(userProfile_id=userProfile_id, name=name, city=city, state=state, accountNumber=accountNumber, ifscCode=ifscCode,incorporatioName=incorporatioName,
                           incorporationType=incorporationType, gstin=gstin, pan=pan, phone=phone, email=email)
         
         self.save(shop=shop)
