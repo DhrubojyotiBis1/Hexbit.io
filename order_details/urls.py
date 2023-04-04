@@ -4,6 +4,6 @@ from order_details import views
 
 
 urlpatterns = [
-    path('view/', views.getOrders, name='getOrders'),
+    path('view/<int:pk>', views.getOrders, name='getOrders'),
     path('update/', views.updateOrders, name='updateOrders')
 ]
