@@ -5,9 +5,10 @@ from order.serializers import OrderSerializer
 
 
 class OrderDetailsSerializer(serializers.ModelSerializer):
-    #product = PoductSerializer()
+    
+    
     order = OrderSerializer()
     class Meta:
         model = OrderDetails
-        fields = ['price', 'quantity', 'discount', 'total', 'shipedDate', 'order']
+        fields = ['order', 'price', 'quantity', 'discount', 'total', 'shipedDate', 'billDate', 'fullfilled']
 
