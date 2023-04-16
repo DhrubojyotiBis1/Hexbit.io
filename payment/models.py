@@ -3,9 +3,9 @@ from django.db import models
 
 class PaymentManager(models.Manager):
     
-    def create_payment(self, ondcTransactionId: str, paymentType: int, amount: int, upi='', bankAccount='', accountNumber='', buyerAppFinderFee=0):
+    def create_payment(self, ondcTransaction_id: str, paymentType: int, amount: int, upi='', bankAccount='', accountNumber='', buyerAppFinderFee=0):
 
-        payment = self.model(ondcTransactionId=ondcTransactionId, paymentType=paymentType, amount=amount, upi=upi, bankAccount=bankAccount, accountNumber=accountNumber, buyerAppFinderFee=buyerAppFinderFee)
+        payment = self.model(ondcTransaction_id=ondcTransaction_id, paymentType=paymentType, amount=amount, upi=upi, bankAccount=bankAccount, accountNumber=accountNumber, buyerAppFinderFee=buyerAppFinderFee)
         self.save(payment=payment)
 
         return payment
@@ -16,9 +16,9 @@ class PaymentManager(models.Manager):
 
 class Payment(models.Model):
 
-    ondcTransactionId = models.CharField(max_length=255, null=False) #ONDC Transaction Id  from ONDC network
-    orderId = models.CharField(max_length=100, unique=True) #Bank Order Id, could be Null
-    referenceId = models.CharField(max_length=100, unique=True) #Bank Reference Id, could be Null
+    ondcTransaction_id = models.CharField(max_length=255, null=False) #ONDC Transaction Id  from ONDC network
+    order_id = models.CharField(max_length=100, unique=True) #Bank Order Id, could be Null
+    reference_id = models.CharField(max_length=100, unique=True) #Bank Reference Id, could be Null
 
     paymentType = models.BigIntegerField(null=False)
     upi = models.CharField(max_length=200)
