@@ -35,7 +35,7 @@ class UserProfile(AbstractBaseUser, PermissionsMixin):
     name = models.CharField('name',max_length=150,blank=True)
     country = models.CharField('country',max_length=150,blank=True)
     mobile= models.PositiveBigIntegerField('mobile',null=True,blank=True)
-    pan_number = models.CharField('pan_number',max_length=10, unique=True, blank=True)
+    pan_number = models.CharField('pan_number',max_length=10, blank=True)
     legal_entity_name = models.CharField('legal_entity_name',max_length=100, blank=True)
     incorporation_type = models.CharField('incorporation_type',max_length=100, blank=True)
     fssai_number = models.CharField('fssai_number',max_length=14, blank=True)

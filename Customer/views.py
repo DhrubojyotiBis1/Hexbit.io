@@ -8,16 +8,14 @@ from .models import Customer
 ORDER = 'order_id'
 
 @api_view(['GET'])
-def get_customer(request):
+def View(request):
     data = request.data
-    customers = []
     if not data.__contains__(ORDER):
         return Response({'status': 403, 'message': 'Order Id not found'})
     
     if Customer.objects.filter(order_id=data[ORDER]).exists():
-        customer = Customer.objects.get(order_id=data[ORDER])
-        customers.append(customer.email)
-        return Response({'status': 200, 'customers': customers})
+        customer = Customer.objects.filter(order_id=data[ORDER]).values()
+        return Response({'status': 200, 'customers': customer})
 
     else:
         return Response({'status': 404, 'message': 'No Customer Found'})
