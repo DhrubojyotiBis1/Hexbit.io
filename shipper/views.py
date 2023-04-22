@@ -63,6 +63,11 @@ def createShipper(request):
         if not shipper.__contains__(TYPE) or not shipper.__contains__(ORDER_ID) or not shipper.__contains__(COMPANYNAME):
             return Response({'message': FAIL}, 400)
         
+        if not OrderDetails.object.filter(product__shop__userProfile=user, order_id=shipper[ORDER_ID]).exists():
+            return Response({'message': FAIL}, 404)
+        
+        order_details = OrderDetails.object.get(product__shop__userProfile=user, order_id=shipper[ORDER_ID])
+        
         newshipper: Shipper
         
         if shipper[TYPE] == 0:
@@ -81,10 +86,6 @@ def createShipper(request):
             
             newshipper = Shipper.object.create_shipper(type=shipper[TYPE], companyName=shipper[COMPANYNAME], trackingUrl=shipper[TRACKINGURL], urlStatus=shipper[URLSTATUS])    
 
-        if not OrderDetails.object.filter(product__shop__userProfile=user, order_id=shipper[ORDER_ID]).exists():
-            return Response({'message': FAIL}, 404)
-        
-        order_details = OrderDetails.object.get(product__shop__userProfile=user, order_id=shipper[ORDER_ID])
         order = order_details.order
         order.shipper_id = newshipper.id
 
